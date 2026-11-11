@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<style>
+.bg{fill:#fff}.box{fill:#f8fbff;stroke:#3b82f6;stroke-width:2}.head{fill:#dbeafe;stroke:#3b82f6;stroke-width:2}
+.t{font:16px Arial;fill:#1e293b}.h{font:bold 18px Arial;fill:#1e3a8a}.line{stroke:#64748b;stroke-width:2;fill:none}
+</style><rect class="bg" width="1200" height="760"/>
+<text x="40" y="42" class="h" style="font-size:26px">VitalSync – MongoDB Collection Relationships</text>
+<rect class="box" x="40" y="100" width="220" height="150" rx="8"/><rect class="head" x="40" y="100" width="220" height="34" rx="8"/><text class="h" x="52" y="123">Users</text><text class="t" x="52" y="158">fullName</text><text class="t" x="52" y="183">email (unique)</text><text class="t" x="52" y="208">passwordHash</text><text class="t" x="52" y="233">role</text><rect class="box" x="360" y="100" width="220" height="130" rx="8"/><rect class="head" x="360" y="100" width="220" height="34" rx="8"/><text class="h" x="372" y="123">Patients</text><text class="t" x="372" y="158">userId (ref Users)</text><text class="t" x="372" y="183">dateOfBirth</text><text class="t" x="372" y="208">phone</text><rect class="box" x="850" y="100" width="260" height="130" rx="8"/><rect class="head" x="850" y="100" width="260" height="34" rx="8"/><text class="h" x="862" y="123">DoctorSchedules</text><text class="t" x="862" y="158">doctorUserId (ref Users)</text><text class="t" x="862" y="183">workingDay</text><text class="t" x="862" y="208">time window</text><rect class="box" x="360" y="360" width="260" height="150" rx="8"/><rect class="head" x="360" y="360" width="260" height="34" rx="8"/><text class="h" x="372" y="383">Appointments</text><text class="t" x="372" y="418">patientId (ref Patients)</text><text class="t" x="372" y="443">doctorUserId (ref Users)</text><text class="t" x="372" y="468">startAt, endAt, status</text><rect class="box" x="40" y="570" width="260" height="130" rx="8"/><rect class="head" x="40" y="570" width="260" height="34" rx="8"/><text class="h" x="52" y="593">MedicalRecords</text><text class="t" x="52" y="628">patientId, doctorUserId</text><text class="t" x="52" y="653">appointmentId</text><text class="t" x="52" y="678">visitDate, notes</text><rect class="box" x="850" y="570" width="260" height="130" rx="8"/><rect class="head" x="850" y="570" width="260" height="34" rx="8"/><text class="h" x="862" y="593">Prescriptions</text><text class="t" x="862" y="628">patientId, doctorUserId</text><text class="t" x="862" y="653">appointmentId</text><text class="t" x="862" y="678">medicines, instructions</text>
+<path class="line" d="M260 175 H360"/><path class="line" d="M150 250 V570"/>
+<path class="line" d="M470 230 V360"/><path class="line" d="M580 165 H850"/>
+<path class="line" d="M620 435 H740 V165 H850"/>
+<path class="line" d="M490 510 V635 H300"/>
+<path class="line" d="M620 455 H760 V635 H850"/>
+<text class="t" x="270" y="160">1 : 0..1</text><text class="t" x="165" y="400">1 : many</text>
+<text class="t" x="490" y="295">1 : many</text><text class="t" x="680" y="150">1 : many</text>
+</svg>
