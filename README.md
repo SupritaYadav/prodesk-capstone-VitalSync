@@ -25,18 +25,24 @@ VitalSync proposes a single web application where patients can manage their appo
 5. Make the interface usable on desktop, tablet and mobile screens.
 
 ## User Roles and Permissions
-| Capability | Patient | Doctor |
-|---|---|---|
-| View/update own basic profile | Yes | Yes |
-| Browse doctor availability | Yes | No |
-| Request/cancel own appointment | Yes | No |
-| View own appointments | Yes | Yes (doctor's schedule) |
-| View medical history | Own records only | Assigned patients only |
-| Add consultation note | No | Yes |
-| Create prescription | No | Yes |
-| View prescription | Own prescriptions | Prescriptions they issued |
 
-Every protected API request must be authorised on the server. A user must not gain access to another patient's record by changing an ID in the URL.
+1 Doctor
+
+Access the doctor dashboard.
+
+View patient details.
+
+Access patient medical records.
+
+Manage patient-related information.
+
+2 Patient
+
+Access personal information.
+
+View available medical details.
+
+Manage personal profile information.
 
 ## Core Features (Prioritised)
 ### P0 – MVP
@@ -93,39 +99,24 @@ Login → Doctor Dashboard → Review Today's Appointments → Open Assigned Pat
 5. **MedicalRecords** – patient reference, doctor reference, appointment reference, visit date and clinical notes.
 6. **Prescriptions** – patient reference, doctor reference, appointment reference, medicines and instructions.
 
-References between collections use MongoDB ObjectIds. Sensitive information is not duplicated unnecessarily. Exact indexes and validation rules will be finalised before implementation.
+## Functional Requirements
 
-## Planned API Endpoints
-All routes are prefixed with `/api`.
+Users should be able to log in securely.
 
-| Method | Endpoint | Access | Purpose |
-|---|---|---|---|
-| POST | `/auth/register` | Public | Create an account |
-| POST | `/auth/login` | Public | Sign in |
-| GET | `/users/me` | Authenticated | Current user's profile |
-| PATCH | `/users/me` | Authenticated | Update own basic profile |
-| GET | `/doctors` | Authenticated | Browse doctors |
-| GET | `/doctors/:doctorId/availability` | Authenticated | View available slots |
-| POST | `/appointments` | Patient | Request a booking |
-| GET | `/appointments` | Patient/Doctor | List role-scoped appointments |
-| PATCH | `/appointments/:id/cancel` | Owner/authorised doctor | Cancel appointment |
-| PATCH | `/appointments/:id/status` | Assigned doctor | Update appointment status |
-| GET | `/patients/:patientId` | Assigned doctor or patient owner | View permitted patient profile |
-| GET | `/patients/:patientId/records` | Patient owner/assigned doctor | View permitted history |
-| POST | `/patients/:patientId/records` | Assigned doctor | Add consultation record |
-| GET | `/patients/:patientId/prescriptions` | Patient owner/issuing doctor | View prescriptions |
-| POST | `/patients/:patientId/prescriptions` | Assigned doctor | Create prescription |
+The system should provide access according to user roles.
 
-The endpoint list is a planning contract, not a claim that the routes already exist.
+Doctors should be able to access the dashboard.
 
-## Important Business Rules
-- A patient can only view and update their own profile and records.
-- A doctor can access records only for patients assigned through a valid appointment/care relationship.
-- The server checks permissions on every protected request; hiding a UI control is not security.
-- A slot cannot be confirmed for two patients. Booking must re-check availability at write time and use a database-safe conflict strategy.
-- Appointment statuses are limited to `requested`, `confirmed`, `completed` and `cancelled`.
-- Only the assigned doctor can add a consultation record or issue a prescription for that visit.
-- Use fictional sample data only during development and demonstrations.
+Patient information should be stored and managed.
+
+Medical records should be associated with the respective patient.
+
+The system should support appointment-related information.
+
+Authorized users should be able to access relevant information.
+
+
+
 
 ## Non-Functional Requirements
 - Responsive layout for mobile, tablet and desktop.
@@ -136,27 +127,40 @@ The endpoint list is a planning contract, not a claim that the routes already ex
 - Maintain audit events for sensitive record actions in a later iteration.
 - Provide accessible labels, keyboard focus states and readable contrast.
 
-## UI/UX Plan
-The first wireframe set contains:
-1. Login and role selection
-2. Role-aware dashboard
-3. Patient details and medical history
+## UI/UX Design – Figma
 
-Editable SVG wireframes are in [`docs/wireframes/`](docs/wireframes/). Import the SVG files into Figma, then add a separate mobile frame for each screen. The SVGs are starting layouts, not final visual designs.
+The initial UI/UX designs for VitalSync were created
+in Figma before starting the development phase.
 
-**Figma file:** Add the public Figma link here after creating and publishing the design file.
+### Designed Screens
+1. Login & Authentication
+2. Doctor Dashboard
+3. Patient Details & Medical Records
 
-## Architecture
+### Figma Design Link
+[View VitalSync Designs](
+https://www.figma.com/design/gSVKlNK0k66r5dYWQpxCtO/VitalSync-%E2%80%93-Healthcare-Dashboard-UI?node-id=0-1&t=CY2bHlivFsk1rKQX-1)
 
-### High-level system architecture
-![VitalSync system architecture](docs/system-architecture.svg)
+## Database Architecture
 
-### Database ER diagram
-![VitalSync ER diagram](docs/erd.svg)
+VitalSync will use MongoDB to store and manage application data.
 
-- [System architecture details and request flow](docs/system-architecture.md)
-- [ER diagram and collection relationship notes](docs/erd.md)
-- [Planned API contract](docs/api-plan.md)
+The planned database structure includes the following collections:
+
+
+| Collection   | Description                                                   |
+| ------------ | ------------------------------------------------------------- |
+| Users        | Stores user information and credentials.                 |
+| Patients   | Stores patient profile details.                            |
+| Appointments     | Stores appointment-related information.              |
+| MedicalRecords        | Stores patient medical history and records.               |
+| Prescriptions | Stores prescription details and medicines.               |
+
+MongoDB ObjectId references will be used to establish relationships between related collections.
+
+### ER diagram
+![VitalSync ER diagram](./docs/database_plan/VitalSync%20Database%20Architecture.png)
+
 
 ## Sprint Roadmap
 | Sprint | Planned work |
@@ -179,4 +183,4 @@ Editable SVG wireframes are in [`docs/wireframes/`](docs/wireframes/). Import th
 - [OWASP Developer Guide: Access Controls](https://devguide.owasp.org/en/04-design/02-web-app-checklist/07-access-controls/) – access-control checklist.
 
 ---
-*Sprint 13 planning document. Implementation details may be refined after the architecture review.*
+
