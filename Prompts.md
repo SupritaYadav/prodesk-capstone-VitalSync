@@ -37,30 +37,23 @@ This file records how AI assistance was used during the planning phase. The prom
 
 **What I used it for:** Identifying an important business rule and a design risk.
 
-## 8. API planning
-**Prompt:** Suggest a small REST API endpoint list for a Doctor/Patient EHR prototype. Group routes by authentication, doctors, appointments, patient records and prescriptions. For each route, state the intended role and purpose. Do not write Express code.
-
-**What I used it for:** Drafting the API contract for the PRD.
-
-## 9. Wireframe review
+## 8. Wireframe review
 **Prompt:** Review the planned Login, Dashboard and Patient Details screens for a healthcare web app. What information should be visible first on each screen? Suggest a simple responsive layout and avoid adding decorative features that do not support a user task.
 
 **What I used it for:** Checking the screen hierarchy before building the Figma frames.
 
-## 10. Architecture review
+## 9. Architecture review
 **Prompt:** Explain the request flow in a React + Express + MongoDB application. Use the example of a patient booking an appointment and show where authentication, role checks, validation and database operations happen.
 
 **What I used it for:** Understanding the responsibilities of each application layer.
 
-## 11. Healthcare data standards
+## 10. Healthcare data standards
 **Prompt:** What is HL7 FHIR at a high level? Explain how Patient, Appointment and MedicationRequest concepts relate to an EHR project, and clarify the difference between learning from the standard and claiming full FHIR compliance.
 
 **What I used it for:** Learning the terminology and keeping interoperability claims accurate.
 
-## 12. Final scope check
+## 11. Final scope check
 **Prompt:** Check this VitalSync PRD for unclear requirements, conflicting role permissions, missing error states and features that are too ambitious for an individual five-week capstone. Give practical corrections and explain the reason for each one.
 
 **What I used it for:** Reviewing the planning document before submission.
 
-## Personal verification note
-AI suggestions were used as a starting point for understanding and reviewing the plan. The project scope, feature priorities, role permissions, data relationships and final diagrams should be reviewed and adjusted by me before submission. No production patient data is included in this planning work.
