@@ -179,9 +179,10 @@ MongoDB ObjectId references will be used to establish relationships between rela
 - [HL7 FHIR R4](https://hl7.org/fhir/R4/) – healthcare data concepts and interoperability reference.
 - [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) – authorization design guidance.
 - [OWASP Developer Guide: Access Controls](https://devguide.owasp.org/en/04-design/02-web-app-checklist/07-access-controls/) – access-control checklist.
+---
 
 **Project:** VitalSync
 **Track:** Full Stack Development
 **Phase:** Capstone Planning and Architecture
 
----
+
