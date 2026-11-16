@@ -30,23 +30,18 @@ VitalSync proposes a single web application where patients can manage their appo
 
 ## User Roles and Permissions
 
-1 Doctor
+### 1 Doctor
 
-Access the doctor dashboard.
+* Access the doctor dashboard.
+* View patient details. 
+* Access patient medical records.
+* Manage patient-related information.
 
-View patient details.
+### 2 Patient
 
-Access patient medical records.
-
-Manage patient-related information.
-
-2 Patient
-
-Access personal information.
-
-View available medical details.
-
-Manage personal profile information.
+* Access personal information.
+* View available medical details.
+* Manage personal profile information.
 
 ## Core Features (Prioritised)
 
@@ -114,19 +109,13 @@ Login → Doctor Dashboard → Review Today's Appointments → Open Assigned Pat
 
 ## Functional Requirements
 
-Users should be able to log in securely.
-
-The system should provide access according to user roles.
-
-Doctors should be able to access the dashboard.
-
-Patient information should be stored and managed.
-
-Medical records should be associated with the respective patient.
-
-The system should support appointment-related information.
-
-Authorized users should be able to access relevant information.
+* Users should be able to log in securely.
+* The system should provide access according to user roles.
+* Doctors should be able to access the dashboard.
+* Patient information should be stored and managed.
+* Medical records should be associated with the respective patient.
+* The system should support appointment-related information.
+* Authorized users should be able to access relevant information.
 
 ## Non-Functional Requirements
 
@@ -179,15 +168,11 @@ MongoDB ObjectId references will be used to establish relationships between rela
 
 ## Future Scope
 
-Online appointment scheduling.
-
-Improved patient record management.
-
-Notifications and reminders.
-
-Additional healthcare dashboard features.
-
-Enhanced reporting and analytics
+* Online appointment scheduling.
+* Improved patient record management.
+* Notifications and reminders.
+* Additional healthcare dashboard features.
+* Enhanced reporting and analytics
 
 ## References
 
