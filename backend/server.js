@@ -12,11 +12,19 @@ const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim());
 
+const vercelPreviewPattern =
+  /^https:\/\/prodesk-capstone-vital-sync-[a-z0-9-]+-suprita\.vercel\.app$/;
+
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      vercelPreviewPattern.test(origin)
+    ) {
       return callback(null, true);
     }
+
     return callback(new Error('Origin not allowed by CORS'));
   },
   credentials: true
