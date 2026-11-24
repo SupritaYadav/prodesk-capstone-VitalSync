@@ -57,3 +57,24 @@ This file records how AI assistance was used during the planning phase. The prom
 
 **What I used it for:** Reviewing the planning document before submission.
 
+
+
+## 12. Understanding the authentication implementation
+**Prompt:** Explain the registration and login flow in a React + Express + MongoDB application. Show where password hashing, password comparison, JWT creation and token verification happen. Keep the explanation beginner-friendly and do not add unrelated healthcare features.
+
+**What I used it for:** Understanding the end-to-end authentication flow before testing the Sprint 14 MVP.
+
+## 13. Reviewing password storage
+**Prompt:** Review a Mongoose user model and registration route that use bcryptjs. Check that the original password is never saved, the password hash is excluded from normal query results, and login compares the entered password with the stored hash.
+
+**What I used it for:** Checking the password-handling logic against the sprint security requirement.
+
+## 14. Understanding JWT-protected routes
+**Prompt:** Explain how an Express middleware reads a Bearer token from the Authorization header, verifies its signature and makes the user's identity available to a protected route. Include common 401 cases.
+
+**What I used it for:** Understanding why the backend must protect API routes instead of relying only on frontend navigation.
+
+## 15. Testing the registration and login flow
+**Prompt:** Give me a manual test checklist for a full-stack authentication MVP: successful registration, duplicate email, invalid email, short password, wrong login password, valid login, expired or missing token, dashboard refresh and logout.
+
+**What I used it for:** Planning the Sprint 14 QA demo and checking both successful and error cases.

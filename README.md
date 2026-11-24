@@ -4,7 +4,7 @@
 
 VitalSync is a web-based healthcare record and appointment management platform. It is planned for two main user roles: **Doctor** and **Patient**. The goal is to keep appointment information, patient details, medical history and prescriptions organised in one place.
 
-This repository contains the planning documents for Sprint 13. The application itself is **not implemented in this sprint**. The current work focuses on requirements, UI planning and system architecture.
+This repository contains the Sprint 13 planning documents and the Sprint 14 authentication MVP. The current implementation focuses on account registration, secure password hashing, login, JWT authentication and a protected dashboard.
 
 ## Project Details
 
@@ -186,3 +186,95 @@ MongoDB ObjectId references will be used to establish relationships between rela
 **Phase:** Capstone Planning and Architecture
 
 
+
+## Sprint 14 – Authentication MVP
+
+The first working slice connects the React frontend, Express API and MongoDB database.
+
+### Implemented in this sprint
+
+- User registration with name, email, password and Doctor/Patient role.
+- Password hashing with `bcryptjs` before saving a user.
+- Login with password hash comparison.
+- JWT generation and verification.
+- Protected `/dashboard` route in the React application.
+- Authenticated `/api/auth/me` endpoint.
+- Logout and session cleanup in the frontend.
+
+### Project Structure
+
+```text
+VitalSync/
+├── backend/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── .env.example
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   └── pages/
+│   ├── .env.example
+│   ├── package.json
+│   └── vite.config.js
+└── docs/
+    └── database_plan/
+```
+
+### Run Locally
+
+**1. Backend**
+
+```bash
+cd backend
+npm install
+```
+
+Copy `.env.example` to `.env`, then add your MongoDB Atlas connection string and a long random `JWT_SECRET`.
+
+```bash
+npm run dev
+```
+
+The API runs at `http://localhost:5000`.
+
+**2. Frontend** (open a second terminal)
+
+```bash
+cd frontend
+npm install
+```
+
+Copy `.env.example` to `.env`.
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+### Authentication API
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/api/auth/register` | Create an account and return a JWT |
+| POST | `/api/auth/login` | Verify credentials and return a JWT |
+| GET | `/api/auth/me` | Return the signed-in user's profile (Bearer token required) |
+| GET | `/api/health` | Check API and database connection state |
+
+Registration expects `name`, `email`, `password` and `role` (`doctor` or `patient`). Passwords must contain at least 8 characters. The database stores `passwordHash`, not the original password.
+
+### Environment Variables
+
+Backend: `PORT`, `MONGODB_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `CLIENT_URL`.
+
+Frontend: `VITE_API_URL`.
+
+Do not commit `.env` files or real credentials. Use the deployment provider's environment-variable settings for production.
+
+### Sprint 14 Scope Note
+
+The dashboard currently confirms the authenticated user's identity and role. Appointment booking, patient records, prescriptions, role-specific data permissions and real-time updates are not implemented by this authentication MVP yet.
