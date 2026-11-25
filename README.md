@@ -224,57 +224,6 @@ VitalSync/
     └── database_plan/
 ```
 
-### Run Locally
-
-**1. Backend**
-
-```bash
-cd backend
-npm install
-```
-
-Copy `.env.example` to `.env`, then add your MongoDB Atlas connection string and a long random `JWT_SECRET`.
-
-```bash
-npm run dev
-```
-
-The API runs at `http://localhost:5000`.
-
-**2. Frontend** (open a second terminal)
-
-```bash
-cd frontend
-npm install
-```
-
-Copy `.env.example` to `.env`.
-
-```bash
-npm run dev
-```
-
-Open `http://localhost:5173`.
-
-### Authentication API
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| POST | `/api/auth/register` | Create an account and return a JWT |
-| POST | `/api/auth/login` | Verify credentials and return a JWT |
-| GET | `/api/auth/me` | Return the signed-in user's profile (Bearer token required) |
-| GET | `/api/health` | Check API and database connection state |
-
-Registration expects `name`, `email`, `password` and `role` (`doctor` or `patient`). Passwords must contain at least 8 characters. The database stores `passwordHash`, not the original password.
-
-### Environment Variables
-
-Backend: `PORT`, `MONGODB_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `CLIENT_URL`.
-
-Frontend: `VITE_API_URL`.
-
-Do not commit `.env` files or real credentials. Use the deployment provider's environment-variable settings for production.
-
 ### Sprint 14 Scope Note
 
 The dashboard currently confirms the authenticated user's identity and role. Appointment booking, patient records, prescriptions, role-specific data permissions and real-time updates are not implemented by this authentication MVP yet.
